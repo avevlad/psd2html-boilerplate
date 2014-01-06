@@ -1,4 +1,4 @@
-html-template
-=============
+Html to psd skeleton
+==
 
-Jade + Sass or Stylus + CoffeeScript
+Grunt + Jade + Sass (Compass) + CoffeeScript + AutoReload
