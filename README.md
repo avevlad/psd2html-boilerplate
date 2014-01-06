@@ -1,4 +1,4 @@
 html-template
 =============
 
-Шаблон для верстки сайтов
+Jade + Sass or Stylus + CoffeeScript
