@@ -10,7 +10,7 @@ Grunt + Jade + Sass (Compass) + CoffeeScript + AutoReload
 
 3\. Clone the git repository or [download the zipball](https://github.com/AveVlad/psd2html-skeleton/archive/master.zip) and extract it.
 
-    git clone git@github.com:avevlad/psd2html-skeleton.git psd2html
+    git clone https://github.com/AveVlad/psd2html-skeleton.git psd2html
     
 4\. Run **npm** command to install the dependencies.
 
