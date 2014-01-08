@@ -33,7 +33,7 @@ module.exports = (grunt) ->
         jade:
             compile:
                 options:
-                    data: {}
+                    pretty: true
 
                 files: [
                     expand: true
