@@ -1,3 +1,1 @@
-#$ ->
-#    $('.photo__item').fancybox
-#        padding: 0
+foo = false

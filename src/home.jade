@@ -1,0 +1,10 @@
+extends jade/tpl/index
+block content
+    .container
+        include jade/include/header
+
+        - for (var i = 0; i < 10; ++i) {
+            h3= 'Hello World ' + i
+        - }
+
+        include jade/include/footer

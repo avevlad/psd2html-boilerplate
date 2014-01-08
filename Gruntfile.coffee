@@ -3,49 +3,69 @@ mountFolder = (connect, dir) ->
 
 module.exports = (grunt) ->
     config =
-        path: "app"
+        src: "src"
+        prod: "output"
+        vld: "vld"
         liveReloadPort: 35729
 
     require("load-grunt-tasks") grunt
     require("connect-livereload") port: config.liveReloadPort
 
     grunt.initConfig
-        conf: config
+        cfg: config
         watch:
-            stylus:
-                files: ["<%= conf.path %>/stylus/*.styl"]
-                tasks: ["stylus:compile"]
-
+            compass:
+                files: ["<%= cfg.src %>/sass/*.sass"]
+                tasks: ["compass:dist"]
             coffee:
-                files: ["<%= conf.path %>/coffee/*.coffee"]
+                files: ["<%= cfg.src %>/coffee/*.coffee"]
                 tasks: ["coffee:compile"]
+            jade:
+                files: [
+                    "<%= cfg.src %>/*.jade"
+                    "<%= cfg.src %>/jade/**/*.jade"
+                ]
+                tasks: ["jade:compile"]
 
             livereload:
-                files: ["<%= conf.path %>/stylus/*.styl", "<%= conf.path %>/*.html", "<%= conf.path %>/coffee/*.coffee"]
+                files: ['<%= cfg.prod %>/*.html']
                 options:
                     livereload: config.liveReloadPort
+        jade:
+            compile:
+                options:
+                    data: {}
+
+                files: [
+                    expand: true
+                    cwd: "<%= cfg.src %>"
+                    src: ["*.jade"]
+                    dest: "<%= cfg.prod %>"
+                    ext: ".html"
+                ]
         coffee:
             compile:
                 files:
-                    "<%= conf.path %>/assets/scripts/common.js": ["<%= conf.path %>/coffee/*.coffee"]
-        stylus:
-            compile:
-                files:
-                    '<%= conf.path %>/assets/css/style.css': '<%= conf.path %>/stylus/main.styl'
-
+                    "<%= cfg.prod %>/js/common.js": ["<%= cfg.src %>/coffee/Main.coffee"]
+        compass:
+            dist:
+                options:
+                    sassDir: '<%= cfg.src %>/sass'
+                    cssDir: '<%= cfg.prod %>/css'
+                    environment: 'production'
         connect:
             options:
                 port: 5555
-                base: config.path
+                base: config.prod
                 hostname: "localhost"
 
             livereload:
                 options:
                     middleware: (connect) ->
-                        [require("connect-livereload")(), mountFolder(connect, config.path)]
+                        [require("connect-livereload")(), mountFolder(connect, config.prod)]
         open:
             server:
-                url: "http://localhost:<%= connect.options.port %>/index.html"
+                url: "http://localhost:<%= connect.options.port %>/home.html"
 
     grunt.registerTask "default", ["connect", "open", "watch"]
     grunt.loadNpmTasks "grunt-open"
