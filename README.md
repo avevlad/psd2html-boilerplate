@@ -1,4 +1,4 @@
-Html to psd skeleton
+PSD to html skeleton
 ==
 
 Grunt + Jade + Sass (Compass) + CoffeeScript + AutoReload
