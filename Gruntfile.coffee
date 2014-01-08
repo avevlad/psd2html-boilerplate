@@ -5,7 +5,6 @@ module.exports = (grunt) ->
     config =
         src: "src"
         prod: "output"
-        vld: "vld"
         liveReloadPort: 35729
 
     require("load-grunt-tasks") grunt
