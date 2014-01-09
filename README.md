@@ -8,9 +8,9 @@ Grunt + Ect.js + Sass (Compass) + CoffeeScript + AutoReload
 
 2\. Install [Sass](http://sass-lang.com/install), [Compass](http://compass-style.org/install/), [Grunt](http://gruntjs.com/getting-started) and [CoffeeScript](http://coffeescript.org/#installation).
 
-3\. Clone the git repository or [download the zipball](https://github.com/AveVlad/psd2html-skeleton/archive/master.zip) and extract it.
+3\. Clone the git repository or [download the zipball](https://github.com/AveVlad/psd2html-boilerplate/archive/master.zip) and extract it.
 
-    git clone https://github.com/AveVlad/psd2html-skeleton.git psd2html
+    git clone https://github.com/AveVlad/psd2html-boilerplate.git psd2html
     
 4\. Run **npm** command to install the dependencies.
 
