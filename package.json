@@ -10,7 +10,7 @@
     "grunt-contrib-compass": "~0.7.0",
     "grunt-contrib-coffee": ">=0.7.0",
     "grunt-contrib-connect": "~0.6.0",
-    "grunt-contrib-jade": "~0.9.1"
+    "grunt-ect-templates": "~0.3.1"
   },
   "dependencies": {
     "grunt-open": ">=0.2.2"

@@ -1,8 +1,14 @@
-doctype html
-html(lang="ru")
-    head
-        title Home Page
-        include head
-    body
-        block content
-        include script
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Title</title>
+    <% include 'ect/layout/head' %>
+</head>
+<body>
+<br>
+<div class="container">
+    <% content %>
+    <% include 'ect/layout/script' %>
+</div>
+</body>
+</html>

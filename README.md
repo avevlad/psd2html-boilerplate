@@ -1,7 +1,7 @@
-PSD to html skeleton
+PSD to html Boilerplate
 ==
 
-Grunt + Jade + Sass (Compass) + CoffeeScript + AutoReload
+Grunt + Ect.js + Sass (Compass) + CoffeeScript + AutoReload
 
 # Install
 1\. Make sure you have [Ruby](http://www.ruby-lang.org/en/downloads/) and [Node.js](http://nodejs.org/) installed.

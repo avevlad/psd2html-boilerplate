@@ -1,10 +1,4 @@
-extends jade/tpl/index
-block content
-    .container
-        include jade/include/header
+<% extend 'ect/layout/index' %>
+<% include 'ect/include/header' %>
 
-        - for (var i = 0; i < 10; ++i) {
-            h3= 'Hello World ' + i
-        - }
-
-        include jade/include/footer
+<h1>home</h1>
