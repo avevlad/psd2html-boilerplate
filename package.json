@@ -1,7 +1,12 @@
 {
-  "name": "html2psd-skeleton",
-  "description": "Html to psd skeleton",
-  "version": "0.0.1",
+  "name": "psd2html-boilerplate",
+  "description": "Grunt + Ect.js + Sass (Compass) + CoffeeScript + AutoReload",
+  "version": "0.2.0",
+  "author": "AveVlad <dev@vld.me>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AveVlad/psd2html-boilerplate.git"
+  },
   "devDependencies": {
     "grunt": "~0.4.2",
     "load-grunt-tasks": ">=0.1.0",
