@@ -20,12 +20,12 @@ gulp.task 'coffee', ->
 
 gulp.task 'sass', ->
   gulp
-    .src([o.src + '/sass/*.sass'])
-    .pipe(plg.compass(
-        css: o.out + '/css'
-        sass: o.src + '/sass'
-        image: o.out + '/images'
-      ))
+  .src([o.src + '/sass/*.sass'])
+  .pipe(plg.compass(
+      css: o.out + '/css'
+      sass: o.src + '/sass'
+      image: o.out + '/images'
+    ))
 
 gulp.task 'default', ->
   gulp.run 'ect', 'coffee', 'sass'
