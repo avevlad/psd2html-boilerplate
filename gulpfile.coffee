@@ -29,7 +29,7 @@ gulp.task 'sass', ->
 
 gulp.task 'default', ->
   gulp.run 'ect', 'coffee', 'sass'
-  gulp.watch [o.src + '/*.ect'], ->
+  gulp.watch [o.src + '/*.ect', o.src + '/**/*.ect'], ->
     gulp.run 'ect'
   gulp.watch [o.src + '/coffee/*.coffee'], ->
     gulp.run 'coffee'
