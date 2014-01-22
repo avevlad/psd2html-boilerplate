@@ -6,7 +6,7 @@ Grunt + Ect.js + Sass (Compass) + CoffeeScript + AutoReload
 # Install
 1\. Make sure you have [Ruby](http://www.ruby-lang.org/en/downloads/) and [Node.js](http://nodejs.org/) installed.
 
-2\. Install [Sass](http://sass-lang.com/install), [Compass](http://compass-style.org/install/), [Grunt](http://gruntjs.com/getting-started) and [CoffeeScript](http://coffeescript.org/#installation).
+2\. Install [Sass](http://sass-lang.com/install), [Compass](http://compass-style.org/install/), [Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md) and [CoffeeScript](http://coffeescript.org/#installation).
 
 3\. Clone the git repository or [download the zipball](https://github.com/AveVlad/psd2html-boilerplate/archive/master.zip) and extract it.
 
@@ -17,8 +17,8 @@ Grunt + Ect.js + Sass (Compass) + CoffeeScript + AutoReload
     cd psd2html
     npm install
     
-5\. Run Grunt.
+5\. Run Gulp.
 
-    grunt
+    gulp
     
 It's work!
