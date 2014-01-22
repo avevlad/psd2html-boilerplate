@@ -1,7 +1,6 @@
 gulp = require("gulp");
 gulpLoadPlugins = require("gulp-load-plugins");
 plg = gulpLoadPlugins();
-ect = require('gulp-ect')
 
 o =
   src: 'src'
@@ -29,9 +28,7 @@ gulp.task 'sass', ->
       ))
 
 gulp.task 'default', ->
-  gulp.run 'ect'
-  gulp.run 'coffee'
-  gulp.run 'sass'
+  gulp.run 'ect', 'coffee', 'sass'
   gulp.watch [o.src + '/*.ect'], ->
     gulp.run 'ect'
   gulp.watch [o.src + '/coffee/*.coffee'], ->
