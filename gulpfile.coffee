@@ -14,33 +14,29 @@ gulp.task 'connect', p.connect.server(
 
 gulp.task 'ect', ->
   gulp
-    .src([src + '/*.ect'])
-    .pipe(p.ect())
-    .pipe(gulp.dest(out + '/'))
+  .src([src + '/*.ect'])
+  .pipe(p.watch())
+  .pipe(p.ect())
+  .pipe(gulp.dest(out + '/'))
+  .pipe(p.connect.reload())
 
 gulp.task 'compass', ->
   gulp
-    .src([src + '/sass/*.sass'])
-    .pipe p.compass(
+  .src([src + '/sass/*.sass'])
+  .pipe(p.watch())
+  .pipe p.compass(
       css: out + '/css'
       sass: src + '/sass'
       image: out + '/images'
     )
+    .pipe(p.connect.reload())
 
 gulp.task 'coffee', ->
   gulp
-    .src([src + '/coffee/*.coffee'])
-    .pipe(p.coffee(bare: true))
-    .pipe(gulp.dest(out + '/js/'))
+  .src([src + '/coffee/*.coffee'])
+  .pipe(p.watch())
+  .pipe(p.coffee(bare: true))
+  .pipe(gulp.dest(out + '/js/'))
+  .pipe(p.connect.reload())
 
-gulp.task 'watch', ->
-  gulp.watch [src + '/sass/*.sass'], ['compass']
-  gulp.watch [src + '/coffee/*.coffee'], ['coffee']
-  gulp.watch [src + '/ect/*.ect', src + '/ect/**/*.ect'], ['ect']
-  gulp.watch [
-    out + '/*.html'
-    out + '/css/*.css'
-    out + '/js/*.js'
-  ], p.connect.reload
-
-gulp.task 'default', ['connect', 'ect', 'coffee', 'compass', 'watch']
+gulp.task 'default', ['connect', 'ect', 'coffee', 'compass']
