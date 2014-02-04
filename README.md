@@ -1,7 +1,7 @@
 PSD to html Boilerplate
 ==
 
-Gulp + Ect.js + Sass (Compass) + CoffeeScript + AutoReload + Bower
+Gulp + Ect.js + Sass (Compass) + CoffeeScript + LiveReload + Bower
 
 # Install
 1\. Make sure you have [Ruby](http://www.ruby-lang.org/en/downloads/) and [Node.js](http://nodejs.org/) installed.
