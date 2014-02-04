@@ -1,7 +1,10 @@
 PSD to html Boilerplate
 ==
 
+Шаблон для быстрой и комфортной верстки.
+
 Gulp + Ect.js + Sass (Compass) + CoffeeScript + LiveReload + Bower
+
 
 # Установка
 1\. Убедитесь в том, что вы установили [Ruby](http://www.ruby-lang.org/en/downloads/), [Node.js](http://nodejs.org/) и [Git](http://git-scm.com/downloads).
@@ -21,6 +24,6 @@ Gulp + Ect.js + Sass (Compass) + CoffeeScript + LiveReload + Bower
 
     gulp --require coffee-script/register
 
-Для удобства создайте [alias](https://www.google.com/?q=terminal+alias+windows) для запуcка.
+Ради удобства создайте [alias](https://www.google.com/?q=terminal+alias+windows) для запуска.
 
 Работает!
