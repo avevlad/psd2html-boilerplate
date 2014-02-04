@@ -1,37 +1,46 @@
-gulp = require("gulp");
-gulpLoadPlugins = require("gulp-load-plugins");
-plg = gulpLoadPlugins();
+gulp = require('gulp')
+p = require('gulp-load-plugins')()
+src = 'src'
+out = 'public'
 
-o =
-  src: 'src'
-  out: 'production'
+gulp.task 'connect', p.connect.server(
+  root: __dirname + '/public'
+  port: 1337
+  livereload: true
+  open:
+    file: 'home.html'
+    browser: 'chrome'
+)
 
 gulp.task 'ect', ->
   gulp
-  .src([o.src + '/*.ect'])
-  .pipe(plg.ect())
-  .pipe gulp.dest(o.out + '/')
+    .src([src + '/*.ect'])
+    .pipe(p.ect())
+    .pipe(gulp.dest(out + '/'))
+
+gulp.task 'compass', ->
+  gulp
+    .src([src + '/sass/*.sass'])
+    .pipe p.compass(
+      css: out + '/css'
+      sass: src + '/sass'
+      image: out + '/images'
+    )
 
 gulp.task 'coffee', ->
   gulp
-    .src([o.src + '/coffee/*.coffee'])
-    .pipe(plg.coffee(bare: true))
-    .pipe gulp.dest(o.out + '/js/')
+    .src([src + '/coffee/*.coffee'])
+    .pipe(p.coffee(bare: true))
+    .pipe(gulp.dest(out + '/js/'))
 
-gulp.task 'sass', ->
-  gulp
-  .src([o.src + '/sass/*.sass'])
-  .pipe(plg.compass(
-      css: o.out + '/css'
-      sass: o.src + '/sass'
-      image: o.out + '/images'
-    ))
+gulp.task 'watch', ->
+  gulp.watch [src + '/sass/*.sass'], ['compass']
+  gulp.watch [src + '/coffee/*.coffee'], ['coffee']
+  gulp.watch [src + '/ect/*.ect', src + '/ect/**/*.ect'], ['ect']
+  gulp.watch [
+    out + '/*.html'
+    out + '/css/*.css'
+    out + '/js/*.js'
+  ], p.connect.reload
 
-gulp.task 'default', ->
-  gulp.run 'ect', 'coffee', 'sass'
-  gulp.watch [o.src + '/*.ect', o.src + '/**/*.ect'], ->
-    gulp.run 'ect'
-  gulp.watch [o.src + '/coffee/*.coffee'], ->
-    gulp.run 'coffee'
-  gulp.watch [o.src + '/sass/*.sass'], ->
-    gulp.run 'sass'
+gulp.task 'default', ['connect', 'ect', 'coffee', 'compass', 'watch']
