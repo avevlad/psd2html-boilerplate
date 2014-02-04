@@ -1,7 +1,7 @@
 {
   "name": "psd2html-boilerplate",
-  "description": "Gulp + Ect.js + Sass (Compass) + CoffeeScript + LiveReload",
-  "version": "1.0.0",
+  "description": "Gulp + Ect.js + Sass (Compass) + CoffeeScript + LiveReload + Bower",
+  "version": "1.0.1",
   "license": "MIT",
   "repository": "avevlad/psd2html-boilerplate",
   "author": {
@@ -9,17 +9,14 @@
     "email": "dev@vld.me",
     "url": "http://vld.me"
   },
-  "engines": {
-    "node": ">=0.10.0"
-  },
   "devDependencies": {
-    "gulp": "~3.4.0",
-    "gulp-util": "~2.2.12",
+    "gulp": "~3.5.1",
+    "gulp-util": "~2.2.14",
+    "gulp-coffee": "~1.4.1",
+    "gulp-compass": "~1.1.1",
+    "gulp-connect": "~0.1.6",
     "gulp-ect": "~1.0.0",
-    "gulp-coffee": "~1.2.5",
-    "gulp-compass": "~1.0.8",
-    "gulp-livereload": "~0.2.0",
     "gulp-load-plugins": "~0.2.0",
-    "coffee-script": "~1.6.3"
+    "coffee-script": "~1.7.1"
   }
 }
