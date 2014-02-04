@@ -1,3 +1,1 @@
-$(function() {
-  return console.log('11');
-});
+console.log(1);
