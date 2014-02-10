@@ -9,7 +9,7 @@ Gulp + Ect.js + Sass (Compass) + CoffeeScript + LiveReload + Bower
 # Установка
 1\. Убедитесь в том, что вы установили [Ruby](http://www.ruby-lang.org/en/downloads/), [Node.js](http://nodejs.org/) и [Git](http://git-scm.com/downloads).
 
-2\. Установите [Sass](http://sass-lang.com/install), [Compass](http://compass-style.org/install/), [Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md), [CoffeeScript](http://coffeescript.org/#installation) and  [Bower](http://bower.io/).
+2\. Установите [Sass](http://sass-lang.com/install), [Compass](http://compass-style.org/install/), [Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md), [CoffeeScript](http://coffeescript.org/#installation) и  [Bower](http://bower.io/).
 
 3\. Склонируйте git репозиторий или [скачайте zip архив](https://github.com/AveVlad/psd2html-boilerplate/archive/master.zip) и распакуйте его.
 
