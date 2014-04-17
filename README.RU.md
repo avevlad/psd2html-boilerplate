@@ -3,7 +3,7 @@ PSD to html Boilerplate
 
 Шаблон для быстрой и комфортной верстки.
 
-Gulp + Ect.js + Sass (Compass) + CoffeeScript + LiveReload + Bower
+Gulp + Ejs + Sass + CoffeeScript + LiveReload + Bower
 
 
 # Установка

@@ -1,7 +1,7 @@
 PSD to html Boilerplate
 ==
 
-Gulp + Ect.js + Sass (Compass) + CoffeeScript + LiveReload + Bower
+Gulp + Ejs + Sass + CoffeeScript + LiveReload + Bower
 
 [На русском](https://github.com/AveVlad/psd2html-boilerplate/blob/master/README.RU.md)
 
