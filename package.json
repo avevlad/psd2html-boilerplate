@@ -1,7 +1,7 @@
 {
   "name": "psd2html-boilerplate",
-  "description": "Gulp + Ect.js + Sass (Compass) + CoffeeScript + LiveReload + Bower",
-  "version": "1.2.0",
+  "description": "Gulp + Ejs + Sass + CoffeeScript + LiveReload + Bower",
+  "version": "1.2.1",
   "license": "MIT",
   "repository": "avevlad/psd2html-boilerplate",
   "author": {
