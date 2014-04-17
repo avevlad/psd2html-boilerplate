@@ -4,21 +4,18 @@ p = require('gulp-load-plugins')()
 src = 'src'
 out = 'public'
 
-gulp.task 'connect', connect.server(
-  root: ['public']
-  port: 1337
-  livereload: true
-  open:
-    file: 'home.html'
-    browser: 'chrome'
-)
+gulp.task "connect", ->
+  $.connect.server
+    root: ['public']
+    port: 1337
+    livereload: true
 
-gulp.task 'ect', ->
+gulp.task 'ejs', ->
   gulp
-    .src([src + '/*.ect'])
-    .pipe(p.ect())
-    .pipe(gulp.dest(out + '/'))
-    .pipe(connect.reload())
+  .src([src + '/*.ejs'])
+  .pipe($.ejs())
+  .pipe(gulp.dest(out + '/'))
+  .pipe($.connect.reload())
 
 gulp.task 'compass', ->
   gulp
@@ -39,7 +36,7 @@ gulp.task 'coffee', ->
 
 gulp.task 'watch', ->
   gulp.watch [src + '/sass/*.sass', src + '/sass/**/*.sass'], ['compass']
-  gulp.watch [src + '/*.ect', src + '/ect/**/*.ect'], ['ect']
+  gulp.watch [src + '/*.ejs', src + '/ejs/**/*.ejs'], ['ejs']
   gulp.watch [src + '/coffee/*.coffee'], ['coffee']
 
 gulp.task 'default', ['connect', 'ect', 'coffee', 'compass', 'watch']
