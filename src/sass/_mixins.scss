@@ -1,3 +1,4 @@
+// выравнивает блок по центу
 @mixin fantom($target:'&:before') {
 
   #{$target} {
@@ -10,7 +11,47 @@
 
   }
 }
+/**
+  ставит в конце обзаца тоеточие и градиент
 
+  p.paragraph-overfly
+    div
+      text text text text text text text
+      text text text text text text text
+      text text text text text text text
+      text text text text text text  ...
+
+**/
+@mixin paragraph-overfly($height:100px,$color:#fff,$sizen:2em) {
+  overflow: hidden;
+  height: $height;
+  &:before {
+    content: "";
+    float: left;
+    width: 5px;
+    height: $height;
+  }
+  & > *:first-child {
+    float: right;
+    width: 100%;
+    margin-left: -5px;
+  }
+  &:after {
+    content: "...";
+    text-align: right;
+    float: right;
+    position: relative;
+    top: -1.5em;
+    height: 1.5em;
+    left: 100%;
+    width: $sizen;
+    margin-left: -$sizen;
+    padding-right: 5px;
+    @include box-sizing(content-box);
+    @include gradient-horizontal(rgba($color,0),$color);
+    @include gradient-horizontal-three-colors(rgba($color,0),$color,50%,$color);
+  }
+}
 
 @mixin placeholder(){
   ::-webkit-input-placeholder{
