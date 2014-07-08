@@ -1,0 +1,12 @@
+// симвлл рубля
+.rub
+  margin-left: 5px
+  position: relative
+  &:before
+    content: 'Р'
+  &:after
+    content: '–'
+    position: absolute
+    bottom: 0.1em // подогнать под шрфт
+    width: 100%
+    left: -0.1em // подогнать под шрфт
