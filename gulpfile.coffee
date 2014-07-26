@@ -26,7 +26,7 @@ gulp.task 'ejs', ->
 
 gulp.task 'compass', ->
   gulp
-  .src([src + '/sass/*.sass'])
+  .src([src + '/sass/*.sass', '/sass/*.scss])
   .pipe $.compass(
     css: out + '/css'
     sass: src + '/sass'
