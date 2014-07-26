@@ -46,7 +46,7 @@ gulp.task 'coffee', ->
 
 
 gulp.task 'watch', ->
-  gulp.watch [src + '/sass/*.sass', src + '/sass/**/*.sass'], ['compass']
+  gulp.watch [src + '/sass/*.sass', src + '/sass/**/*.sass',src + '/sass/*.scss', src + '/sass/**/*.scss'], ['compass']
   gulp.watch [src + '/*.ejs', src + '/ejs/**/*.ejs'], ['ejs']
   gulp.watch [src + '/coffee/*.coffee'], ['coffee']
 
