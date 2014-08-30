@@ -1,41 +1,42 @@
 gulp = require('gulp')
 $ = require('gulp-load-plugins')()
-src = 'src'
-out = 'public'
+
+handleError  = (err) ->
+  console.log(err.toString())
+  $.notify.onError((error) ->
+    error
+  ) (err.message)
+  this.emit('end')
 
 gulp.task "connect", ->
   $.connect.server
-    root: "public"
+    root: "./"
     port: 1337
     livereload: true
 
 gulp.task 'ejs', ->
   gulp
-  .src([src + '/*.ejs'])
+  .src([ 'page/*.ejs', 'ejs/*/*.ejs'])
   .pipe($.ejs())
-  .pipe(gulp.dest(out + '/'))
-  .pipe($.connect.reload())
+  .on('error',handleError)
+  .pipe(gulp.dest( '/page/'))
+  .pipe($.connect.reload()).on('error', console.log)
 
 gulp.task 'compass', ->
   gulp
-    .src([src + '/sass/*.sass'])
-    .pipe $.compass(
-        css: out + '/css'
-        sass: src + '/sass'
-        image: out + '/images'
-      )
-    .pipe($.connect.reload())
+  .src([ '/css/*.sass', '/css/*.scss'])
+  .pipe $.compass(
+    css:  '/css'
+    sass:  '/css'
+    image:  '/images'
+  )
+  .on('error',handleError)
+  .pipe($.connect.reload())
 
-gulp.task 'coffee', ->
-  gulp
-    .src([src + '/coffee/*.coffee'])
-    .pipe($.coffee(bare: true))
-    .pipe(gulp.dest(out + '/js/'))
-    .pipe($.connect.reload())
+
 
 gulp.task 'watch', ->
-  gulp.watch [src + '/sass/*.sass', src + '/sass/**/*.sass'], ['compass']
-  gulp.watch [src + '/*.ejs', src + '/ejs/**/*.ejs'], ['ejs']
-  gulp.watch [src + '/coffee/*.coffee'], ['coffee']
+  gulp.watch [ '/sass/*.sass',  '/sass/**/*.sass', '/sass/*.scss',  '/sass/**/*.scss'], ['compass']
+  gulp.watch [ '/*.ejs',  '/ejs/**/*.ejs'], ['ejs']
 
-gulp.task 'default', ['connect', 'ejs', 'coffee', 'compass', 'watch']
+gulp.task 'default', ['connect', 'ejs', 'compass', 'watch']

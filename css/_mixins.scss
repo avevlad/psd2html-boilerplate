@@ -1,0 +1,538 @@
+// выравнивает блок по центу
+@mixin fantom($target:'&:before') {
+
+  #{$target} {
+    content: "";
+    height: 100%;
+    width: 0;
+    margin-left: -0.3em;
+    display: inline-block;
+    vertical-align: middle;
+
+  }
+}
+/**
+  ставит в конце обзаца тоеточие и градиент
+
+  p.paragraph-overfly
+    div
+      text text text text text text text
+      text text text text text text text
+      text text text text text text text
+      text text text text text text  ...
+
+**/
+@mixin paragraph-overfly($height:100px,$color:#fff,$sizen:2em) {
+  overflow: hidden;
+  height: $height;
+  &:before {
+    content: "";
+    float: left;
+    width: 5px;
+    height: $height;
+  }
+  & > *:first-child {
+    float: right;
+    width: 100%;
+    margin-left: -5px;
+  }
+  &:after {
+    content: "...";
+    text-align: right;
+    float: right;
+    position: relative;
+    top: -1.5em;
+    height: 1.5em;
+    left: 100%;
+    width: $sizen;
+    margin-left: -$sizen;
+    padding-right: 5px;
+    @include box-sizing(content-box);
+    @include gradient-horizontal(rgba($color,0),$color);
+    @include gradient-horizontal-three-colors(rgba($color,0),$color,50%,$color);
+  }
+}
+
+@mixin placeholder(){
+  ::-webkit-input-placeholder{
+    @content;
+  }
+  :-moz-placeholder{
+    @content;
+  }
+  ::-moz-placeholder{
+    @content;
+  }
+  :-ms-input-placeholder {
+    @content;
+  }
+}
+
+
+@mixin rubberProportionality($height, $width){
+  padding-top: $height/$width * 100%;
+}
+
+
+
+
+/**
+* преоброзования в пиксели
+  +to-pixels(n)
+
+  n =
+    if auto, none, string => "string"
+    if 1 => 1px
+    if 1px, 1em => 1px, 1em
+*/
+@function to-pixels($n){
+  @if (type-of($n) == 'string') {
+    @return $n;
+  }
+  @else if (unitless($n)) {
+    @return 1px * $n;
+  } @else {
+    @return $n;
+  }
+}
+
+/**
+  для удобного создования кводратиков
+
+  +size(n) =>
+    width: n;
+    height: n;
+
+  +size(h,w) =>
+    width: w;
+    height: h;
+
+  n =
+    if auto, none, string => "string"
+    if 1 => 1px
+    if 1px, 1em => 1px, 1em
+*/
+@mixin size($height: 10px, $width: false) {
+  @if $width == false  {
+    width: to-pixels($height);
+  } @else {
+    width: to-pixels($width);
+  }
+  height: to-pixels($height);
+}
+
+
+// снипит позицинирования
+/**
+  +pos(a) =>
+    position: absolute
+    top: a
+    left: a
+    right: a
+    bottom: a
+
+  +pos(a,b) =>
+    position: absolute
+    top: a
+    left: b
+    right: b
+    bottom: a
+
+  +pos(a,b,c) =>
+    position: absolute
+    top: a
+    left: b
+    right: b
+    bottom: c
+
+
+  +pos(a,b,c,d) =>
+    position: absolute
+    top: a
+    left: d
+    right: b
+    bottom: c
+
+  a =
+    if none => del
+    if auto => auto
+    if 1    => 1px
+    if 1px  => 1px
+    if 1em  => 1em
+*/
+@mixin pos(
+  $top: false,
+  $right: false,
+  $bottom: false,
+  $left: false){
+  @include position( $top, $right, $bottom, $left);
+}
+@mixin position(
+  $top: false,
+  $right: false,
+  $bottom: false,
+  $left: false
+) {
+  position:absolute;
+  @if ($top or $right or $bottom or $left ) == false {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  @else if (($right or $bottom or $left ) == false) {
+    $top: $top;
+    $left: $top;
+    $right: $top;
+    $bottom: $top;
+  }
+  @else if (($bottom or $left ) == false) {
+    $top: $top;
+    $left: $right;
+    $right: $right;
+    $bottom: $top;
+  }
+  @else if (($left ) == false) {
+    $top: $top;
+    $left: $right;
+    $right: $right;
+    $bottom: $bottom;
+  }
+  @else {
+    $top: $top;
+    $left: $left;
+    $right: $right;
+    $bottom: $bottom;
+  }
+  @if ($top != none) {
+    top:  to-pixels($top);
+  }
+  @if ($left != none) {
+    left: to-pixels($left);
+  }
+  @if ($right != none) {
+    right: to-pixels($right);
+  }
+  @if ($bottom != none) {
+    bottom: to-pixels($bottom);
+  }
+}
+
+
+/**
+стрелка
+  +arrow($color, $width, $list)
+
+  $list =
+    t => ▼
+    b => ▲
+    r => ►
+    l => ▼
+
+    if r t       => ► + ▼
+    if (r, 20)   => ► + width: 20px
+    if (t, 20em) => ▼ + width: 20em
+    if t (r, 20) => ▼ + (► + width: 20px)
+
+  +arrow(red,10,t r (l,20) =>
+    border-color:       transparent;
+    border-style:       solid;
+    border-width:       10px;
+    margin:             -10px ;
+
+    border-top-color:   red;
+    border-right-color: red;
+
+    border-left-color:  red;
+    border-left-width:  20px;
+*/
+@mixin arrow(
+  $color: #fff,
+  $width:10px,
+  $list: b
+) {
+  @include size(0,0);
+  border-color: transparent;
+  border-style:solid;
+  border-width: to-pixels($width);
+  margin: - to-pixels($width) ;
+  @for $i from 1 through length($list) {
+    $el: nth($list, $i);
+    @if (length($el) == 1) {
+      @if ($el == t) {
+        border-top-color: $color;
+      }
+      @if ($el == b) {
+        border-bottom-color: $color;
+      }
+      @if ($el == l) {
+        border-left-color: $color;
+      }
+      @if ($el == r) {
+        border-right-color: $color;
+      }
+    } @else {
+      @if (nth($el, 1) == t) {
+        border-top-color: $color;
+        border-top-width: to-pixels(nth($el,2));
+      }
+      @if (nth($el, 1) == b) {
+        border-bottom-color: $color;
+        border-bottom-width: to-pixels(nth($el,2));
+      }
+      @if (nth($el, 1) == l) {
+        border-left-color: $color;
+        border-left-width: to-pixels(nth($el,2));
+        //margin-right: - to-pixels(nth($el,2)) / 2;
+      }
+      @if (nth($el, 1) == r) {
+        border-right-color: $color;
+        border-right-width: to-pixels(nth($el,2));
+      }
+    }
+  }
+}
+/**
+  Разрывает бекграунд во всю ширену блока ie7+
+  */
+@mixin background-size-100($url) {
+  background-image: url($url);
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
+src=#{$url},
+sizingMethod='scale');
+
+  -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(
+src=#{$url},
+sizingMethod='scale')";
+   @include background-size(100% 100%);
+}
+@mixin bgs100($url) {
+  @include background-size-100($url);
+}
+
+/**
+ * делает все блоки по центу
+ *
+ * +justify-bloc($target)
+ * $target - селектор ребенка которы будет выравниватя
+ */
+@mixin justify-bloc($target: 'li') {
+  text-align: justify;
+/* Обнуляем для родителя*/
+  line-height: 0;
+  font-size: 1px; /* 1px для Opera */
+/* Лекарство для IE6-7*/
+  text-justify: newspaper;
+  zoom:1;
+/* Включаем в работу последнюю строку*/
+  text-align-last: justify;
+  &:after {
+    width: 100%;
+    height: 0px;
+    visibility: hidden;
+    overflow: hidden;
+    content: '';
+    display:inline-block;
+
+  }
+  > #{$target}  {
+
+    text-align: left;
+  /* Востанавливаем у потомков, кроме последнего*/
+    line-height: normal;
+    font-size: 14px;
+  /* Без него в Opera будет отступ под элементами */
+    vertical-align: top;
+  /* эмуляция inline-block для IE6-7*/
+    display:inline-block;
+  }
+}
+// retina iPad  makbook pro
+@mixin  retina(){
+  @media
+    only screen and (-webkit-min-device-pixel-ratio: 2.0),
+    only screen and (min--moz-device-pixel-ratio: 2.0),
+    only screen and (-o-min-device-pixel-ratio: 200/100),
+    only screen and (min-device-pixel-ratio: 2.0) {
+    @content
+  }
+}
+
+// animation
+@mixin  keyframes($name:"laneAnimation"){
+  @-webkit-keyframes #{$name}{
+    @content
+  }
+  @-moz-keyframes #{$name} {
+    @content
+  }
+  @-o-keyframes #{$name} {
+    @content
+  }
+  @keyframes #{$name} {
+    @content
+  }
+}
+// animation
+@mixin  animation($name:"laneAnimation", $time:5s){
+  -webkit-animation: $name $time infinite; /* Safari 4+ */
+  -moz-animation:    $name $time infinite; /* Fx 5+ */
+  -o-animation:      $name $time infinite; /* Opera 12+ */
+  animation:         $name $time infinite; /* IE 10+ */
+}
+
+// внуртри нее сылки
+/**
+ *   цвет ссылко
+ *
+ **/
+@mixin linc-color($color: '#000',$colorHover: false,$colorActiv: false) {
+  color: $color;
+  @if ($colorHover != false) {
+    &:hover {
+      color: $colorHover;
+    }
+    @if ($colorActiv != false) {
+      &.-active-,
+      &:active{
+        color: $colorActiv;
+      }
+    } @else{
+      &.-active-,
+      &:active{
+        color: $colorHover;
+      }
+    }
+  } @else {
+    &.-active-,
+    &:active,
+    &:hover {
+      color: $color;
+    }
+  }
+}
+@mixin td-none{
+  text-decoration: none !important;
+  border-color:transparent;
+  &.active,
+  &:hover{
+    border-color:transparent;
+    text-decoration: none;
+  }
+}
+@mixin td-dashed{
+  text-decoration: none !important;
+  border-bottom:1px dashed;
+  &.active,
+  &:hover{
+    border-color:transparent;
+    text-decoration: none;
+  }
+}
+@mixin td-dotted{
+  text-decoration: none !important;
+  border-bottom:1px dotted;
+  &.active,
+  &:hover{
+    border-color:transparent;
+    text-decoration: none;
+  }
+}
+
+//  <a clss=blokc >
+//      <span>  TEXT  </span>
+//  </a>
+
+@mixin td-box-norm($target:span){
+  text-decoration: none  !important;
+  #{$target}{
+    text-decoration: underline;
+  }
+  &:hover  #{$target}{
+    text-decoration: none;
+  }
+  .active &,._active_ &{
+    #{$target}{
+      text-decoration: none;
+    }
+  }
+}
+@mixin td-box-none($target:span){
+  text-decoration: none  !important;
+  #{$target}{
+    text-decoration: none;
+    border-color:transparent !important;
+  }
+  &:hover  #{$target}{
+    text-decoration: none;
+    border-color:transparent !important;
+  }
+  .active &,._active_ &{
+    #{$target}{
+      text-decoration: none;
+    }
+  }
+}
+@mixin td-box-dotted($target:span){
+  text-decoration: none !important ;
+  #{$target}{
+    text-decoration: none;
+    border-bottom:1px dotted;
+  }
+  &:hover  #{$target}{
+    border-color:transparent;
+    text-decoration: none;
+  }
+  &.active ,&._active_ {
+    #{$target}{
+      text-decoration: none;
+      border-color:transparent;
+    }
+  }
+}
+@mixin td-box-dashed($target:span){
+  text-decoration: none !important;
+  #{$target}{
+    text-decoration: none;
+    border-bottom:1px dashed;
+  }
+  &:hover #{$target}{
+    border-color:transparent;
+    text-decoration: none;
+  }
+  &.active ,&._active_ {
+    #{$target}{
+      text-decoration: none;
+      border-color:transparent;
+    }
+  }
+}
+/**
+*  прозрачный фон
+*
+**/
+@mixin bgca($color, $value) {
+  background-color: $color;
+  background-color: rgba($color, $value);
+}
+
+
+
+// https://dvcs.w3.org/hg/FXTF/raw-file/tip/filters/index.html 
+//
+// grayscale      ex: filter: grayscale(100%);
+// sepia          ex: filter: sepia(100%);
+// saturate       ex: filter: saturate(0%);
+// hue-rotate     ex: filter: hue-rotate(45deg);
+// invert         ex: filter: invert(100%);
+// brightness     ex: filter: brightness(15%);
+// contrast       ex: filter: contrast(200%);
+// blur           ex: filter: blur(2px);
+ 
+@mixin filter($filter-type,$filter-amount) { 
+  -webkit-filter: $filter-type+unquote('(#{$filter-amount})');
+  -moz-filter: $filter-type+unquote('(#{$filter-amount})');
+  -ms-filter: $filter-type+unquote('(#{$filter-amount})');
+  -o-filter: $filter-type+unquote('(#{$filter-amount})');
+  filter: $filter-type+unquote('(#{$filter-amount})');
+}

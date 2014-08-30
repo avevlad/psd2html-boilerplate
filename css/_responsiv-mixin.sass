@@ -1,0 +1,102 @@
+// Media queries  mixin for bootstrap 3.*
+// --------------------------------------------------
+
+// Extra super small screen / mobile
+$screen-xxs: 200px
+$screen-xxs-min: $screen-xxs
+$screen-mobile: $screen-xxs-min
+
+
+// Extra small screen / phone
+// Note: Deprecated $screen-xs and $screen-phone as of v3.0.1
+$screen-xs: 480px
+$screen-xs-min: $screen-xs
+$screen-phone: $screen-xs-min
+
+// Small screen / tablet
+// Note: Deprecated $screen-sm and $screen-tablet as of v3.0.1
+$screen-sm: 768px
+$screen-sm-min: $screen-sm
+$screen-tablet: $screen-sm-min
+
+// Medium screen / desktop
+// Note: Deprecated $screen-md and $screen-desktop as of v3.0.1
+$screen-md: 992px
+$screen-md-min: $screen-md
+$screen-desktop: $screen-md-min
+
+// Large screen / wide desktop
+// Note: Deprecated $screen-lg and $screen-lg-desktop as of v3.0.1
+$screen-lg: 1200px
+$screen-lg-min: $screen-lg
+$screen-lg-desktop: $screen-lg-min
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xxs-max:($screen-xs-min - 1)
+$screen-xs-max:($screen-sm-min - 1)
+$screen-sm-max:($screen-md-min - 1)
+$screen-md-max:($screen-lg-min - 1)
+
+/* Small devices (tablets, 768px and up) */
+=sm
+  @media (min-width: $screen-sm)
+    @content
+
+/* Medium devices (desktops, 992px and up) */
+=md
+  @media (min-width: $screen-md) 
+    @content
+
+/* Large devices (large desktops, 1200px and up) */
+=lg
+  @media (min-width: $screen-lg) 
+    @content
+
+  
+  
+=xxs-only
+  @media (max-width: $screen-xxs-max) 
+    @content
+=xs-only
+  @media (max-width: $screen-xs-max) 
+    @content
+=sm-only
+  @media (min-width: $screen-sm) and (max-width: $screen-sm-max) 
+    @content
+=md-only
+  @media (min-width: $screen-md) and (max-width: $screen-md-max) 
+    @content
+=lg-only
+  @media (min-width: $screen-lg) 
+    @content
+
+.debug-respond
+  &::before
+    position: fixed
+    top: 50%
+    right: 0
+    padding: 2px 4px
+    display: inline-block
+    z-index: 1
+    +rotate(-100grad)
+
+    +lg-only()
+      content: "large-desktop lg"
+      background-color: rgba(5, 21, 255, 0.51)
+      margin-right: -41px
+    +md-only()
+      content: "desktop md"
+      background-color: rgba(33, 158, 255, 0.50)
+      margin-right: -30px
+    +sm-only()
+      content: "tablet sm"
+      background-color: rgba(13, 255, 17, 0.50)
+      margin-right: -23px
+    +xs-only()
+      content: "phone xs"
+      background-color: rgba(255, 0, 5, 0.50)
+      margin-right: -24px
+    +xxs-only
+      content: "mobile xxs"
+      background-color: rgba(255, 130, 3, 0.51)
+      margin-right: -26px
