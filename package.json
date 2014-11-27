@@ -10,7 +10,6 @@
     "url": "http://vld.me"
   },
   "devDependencies": {
-   "devDependencies": {
     "coffee-script": "^1.7.1",
     "gulp": "^3.6.0",
     "gulp-coffee": "^1.4.1",
@@ -30,7 +29,7 @@
     "run-sequence": "^1.0.1",
     "gulp-ejs": "^0.2.2",
     "gulp-open":"^0.3.1"
-     }
+     
   }
   
 }
