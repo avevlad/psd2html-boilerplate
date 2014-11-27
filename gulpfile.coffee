@@ -74,7 +74,7 @@ gulp.task "connect", ->
     
 gulp.task "open", ->
   gulp.src("./page/home.html")
-  .pipe(open("", {app: "chrome", url: "http://localhost:1337"}));
+  .pipe($.open("", {app: "chrome", url: "http://localhost:1337"}))
 
 gulp.task 'ejs', ->
   gulp
@@ -87,7 +87,7 @@ gulp.task 'ejs', ->
 gulp.task 'sass', ->
   gulp
   .src(['css/main.sass'])
-  .pipe $.compass(
+  .pipe $.sass(
     css: 'css'
     sass: 'css'
     image: 'images'
@@ -161,7 +161,7 @@ gulp.task 'watch', ->
   gulp.watch ['css/*.sass', 'css/**/*.sass', 'css/*.scss', 'css/**/*.scss'], ['sass']
   gulp.watch ['page/*.ejs', 'ejs/**/*.ejs'], ['ejs']
 
-gulp.task 'default', ['connect', 'ejs', 'sass', 'watch','open']
+gulp.task 'default', ['connect','open', 'ejs', 'sass', 'watch']
 
 
 
