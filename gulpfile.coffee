@@ -72,7 +72,7 @@ gulp.task "connect", ->
     port: 1337
     livereload: true
     
-gulp.task "connect", ->
+gulp.task "open", ->
   gulp.src("./page/home.html")
   .pipe(open("", {app: "chrome", url: "http://localhost:1337"}));
 
