@@ -70,6 +70,14 @@ $screen-md-max:($screen-lg-min - 1)
   @media (min-width: $screen-lg) 
     @content
 
+
+=sm-less
+  @media (max-width: $screen-sm-max)
+    @content
+=md-less
+  @media (max-width: $screen-md-max)
+    @content
+
 .debug-respond
   &::before
     position: fixed
