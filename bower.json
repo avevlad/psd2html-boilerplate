@@ -1,8 +1,9 @@
 {
   "name": "psd2html",
   "devDependencies": {
-    "jquery": "~2.0.3",
-    "bootstrap-sass": "~3.0.2",
+    "jquery": "*",
+    "bootstrap-sass": "*",
     "jquery-easing": "*"
+    "sourcebuster-js": "*"
   }
 }
