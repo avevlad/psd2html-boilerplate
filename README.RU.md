@@ -7,23 +7,18 @@ Gulp + Ejs + Sass + CoffeeScript + LiveReload + Bower
 
 
 # Установка
-1\. Убедитесь в том, что вы установили [Ruby](http://www.ruby-lang.org/en/downloads/), [Node.js](http://nodejs.org/) и [Git](http://git-scm.com/downloads).
-
-2\. Установите [Sass](http://sass-lang.com/install), [Compass](http://compass-style.org/install/), [Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md), [CoffeeScript](http://coffeescript.org/#installation) и  [Bower](http://bower.io/).
-
-3\. Склонируйте git репозиторий или [скачайте zip архив](https://github.com/AveVlad/psd2html-boilerplate/archive/master.zip) и распакуйте его.
+1\. Склонируйте git репозиторий или [скачайте zip архив](https://github.com/AveVlad/psd2html-boilerplate/archive/master.zip) и распакуйте его.
 
     git clone https://github.com/AveVlad/psd2html-boilerplate.git psd2html
     
-4\. Запустите **npm** команду для установки зависимостей проекта.
+2\. Запустите **npm** команду для установки зависимостей проекта.
 
     cd psd2html
     npm install
-    
-5\. Запустите Gulp.
+    bower install
 
-    gulp --require coffee-script/register
+3\. Запустите Gulp.
 
-Ради удобства создайте [alias](https://www.google.com/?q=terminal+alias+windows) для запуска.
+    gulp
 
 Работает!
