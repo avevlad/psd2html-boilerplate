@@ -24,7 +24,8 @@ gulp.task('ejs', function () {
 gulp.task('less', function () {
   return gulp.src('./src/less/**/*.less')
     .pipe(gulpLess())
-    .pipe(gulp.dest('./public/css/'));
+    .pipe(gulp.dest('./public/css/'))
+    .pipe(gulpConnect.reload());
 });
 
 gulp.task('watch', function () {
